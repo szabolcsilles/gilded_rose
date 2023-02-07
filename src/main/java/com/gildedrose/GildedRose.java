@@ -31,16 +31,8 @@ class GildedRose {
             return;
         }
 
-        updateNormalItem(item); 
-    }
-
-    private void updateNormalItem(Item item) {
-        item.sellIn = item.sellIn - 1;
-        if (item.sellIn < 0) {
-            item.quality = decreaseQualityWithZeroCheck(item.quality, 2);
-            return;
-        }
-        item.quality = decreaseQualityWithZeroCheck(item.quality, 1);
+        NormalItemUpdater updater = new NormalItemUpdater();
+        updater.update(item);
     }
 
     private void updateBackstagePasses(Item item) {
@@ -59,7 +51,7 @@ class GildedRose {
             item.quality = increaseQualityWithMaxCheck(item.quality, 3);
             return;
         }
-        
+
         item.quality = increaseQualityWithMaxCheck(item.quality, 1);
     }
 
