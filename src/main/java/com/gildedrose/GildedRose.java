@@ -35,34 +35,32 @@ class GildedRose {
     }
 
     private void updateNormalItem(Item item) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
-        }
-
         item.sellIn = item.sellIn - 1;
-
-        if (item.sellIn < 0 && item.quality > 0) {
-            item.quality = item.quality - 1;
+        if (item.sellIn < 0) {
+            item.quality = decreaseQualityWithZeroCheck(item.quality, 2);
+            return;
         }
+        item.quality = decreaseQualityWithZeroCheck(item.quality, 1);
     }
 
     private void updateBackstagePasses(Item item) {
-        item.quality = item.quality + 1;
-        if (item.sellIn < 11) {
-            item.quality = item.quality + 1;
-        }
-
-        if (item.sellIn < 6) {
-            item.quality = item.quality + 1;
-        }
         item.sellIn = item.sellIn - 1;
-
         if (item.sellIn < 0) {
             item.quality = 0;
+            return;
         }
-        if (item.quality >= MAX_QUALITY) {
-            item.quality = MAX_QUALITY;
+
+        if (item.sellIn < 10 && item.sellIn >= 5) {
+            item.quality = increaseQualityWithMaxCheck(item.quality, 2);
+            return;
         }
+
+        if (item.sellIn < 5) {
+            item.quality = increaseQualityWithMaxCheck(item.quality, 3);
+            return;
+        }
+        
+        item.quality = increaseQualityWithMaxCheck(item.quality, 1);
     }
 
     private void updateAgedBrie(Item item) {
@@ -72,6 +70,10 @@ class GildedRose {
             return;
         }
         item.quality = increaseQualityWithMaxCheck(item.quality, 1);
+    }
+
+    private int decreaseQualityWithZeroCheck(int quality, int value) {
+        return Math.max(0, quality - value);
     }
 
     private int increaseQualityWithMaxCheck(int quality, int value) {
