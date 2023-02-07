@@ -45,14 +45,11 @@ class GildedRose {
             if (item.name.equals(BACKSTAGE_PASSES)) {
                 item.quality = item.quality - item.quality;
             }
-            
-            if (!item.name.equals(AGED_BRIE)) {
-                if (!item.name.equals(BACKSTAGE_PASSES)) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-                } 
+
+            if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE_PASSES) && item.quality > 0) {
+                item.quality = item.quality - 1;
             } 
+            
             if(item.name.equals(AGED_BRIE) && item.quality < 50) {
                 item.quality = item.quality + 1;
             }
