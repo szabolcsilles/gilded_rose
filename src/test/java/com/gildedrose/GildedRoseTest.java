@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class GildedRoseTest {
 
     private GildedRose createAppWithItem(Item item) {
-        Item[] items = new Item[] {new Item("foo", 0, 0)};
+        Item[] items = new Item[] {item};
         return new GildedRose(items);
     }
 
@@ -38,5 +38,19 @@ class GildedRoseTest {
         GildedRose app = createAppWithItem(new Item("foo", 0, 2));
         app.updateQuality();
         assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void qualityOfAgedBrieIncreasesBeforeSellIn() {
+        GildedRose app = createAppWithItem(new Item("Aged Brie", 2, 1));
+        app.updateQuality();
+        assertEquals(2, app.items[0].quality);
+    }
+
+    @Test
+    void qualityOfAgedBrieIncreasesByTwoAfterSellIn() {
+        GildedRose app = createAppWithItem(new Item("Aged Brie", 0, 0));
+        app.updateQuality();
+        assertEquals(2, app.items[0].quality);
     }
 }

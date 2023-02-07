@@ -2,6 +2,7 @@
 the well nown Gilded Rose refactoring kata
 
 https://github.com/emilybache/GildedRose-Refactoring-Kata
+
 # Gilded Rose starting position in Java
 
 ## Run the Text Fixture from Command-Line
