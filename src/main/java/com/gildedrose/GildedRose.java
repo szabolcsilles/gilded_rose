@@ -24,17 +24,18 @@ class GildedRose {
             item.quality = item.quality - 1;
         } 
         
-        if ((item.name.equals(AGED_BRIE) || item.name.equals(BACKSTAGE_PASSES)) && item.quality < 50) {
+        if (item.name.equals(AGED_BRIE) && item.quality < 50) {
             item.quality = item.quality + 1;
+        }
 
-            if (item.name.equals(BACKSTAGE_PASSES)) {
-                if (item.sellIn < 11) {
-                    item.quality = item.quality + 1;
-                }
+        if (item.name.equals(BACKSTAGE_PASSES) && item.quality < 50) {
+            item.quality = item.quality + 1;
+            if (item.sellIn < 11) {
+                item.quality = item.quality + 1;
+            }
 
-                if (item.sellIn < 6) {
-                    item.quality = item.quality + 1;
-                }
+            if (item.sellIn < 6) {
+                item.quality = item.quality + 1;
             }
         }
 
