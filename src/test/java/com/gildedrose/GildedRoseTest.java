@@ -69,4 +69,43 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(80, app.items[0].quality);
     }
+
+    @Test
+    void backstagePassesIncreasesQualityByOneMoreThanTenDaysBeforeSellIn() {
+        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 15, 0));
+        app.updateQuality();
+        assertEquals(1, app.items[0].quality);
+    }
+
+    @Test
+    void backstagePassesIncreasesQualityByTwoBetweenTenAndFiveDaysBeforeSellIn() {
+        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 10, 0));
+        app.updateQuality();
+        app.updateQuality();
+        app.updateQuality();
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void backstagePassesIncreasesQualityByTwoBetweenFiveAndZeroDaysBeforeSellIn() {
+        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 5, 0));
+        app.updateQuality();
+        app.updateQuality();
+        app.updateQuality();
+        app.updateQuality();
+        app.updateQuality();
+        assertEquals(15, app.items[0].quality);
+    }
+
+    @Test
+    void backstagePassesQualityDropsToZeroAfterSellIn() {
+        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 0, 50));
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+    }
+
+
 }
