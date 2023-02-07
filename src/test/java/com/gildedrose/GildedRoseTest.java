@@ -53,4 +53,20 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(2, app.items[0].quality);
     }
+
+    @Test
+    void qualityOfAnItemIsNeverMoreThanFifty() {
+        GildedRose app = createAppWithItem(new Item("Aged Brie", 1, 50));
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
+    @Test
+    void qualityOfSulfurasNeverChanges() {
+        GildedRose app = createAppWithItem(new Item ("Sulfuras, Hand of Ragnaros", 1, 80));
+        app.updateQuality();
+        assertEquals(80, app.items[0].quality);
+        app.updateQuality();
+        assertEquals(80, app.items[0].quality);
+    }
 }
