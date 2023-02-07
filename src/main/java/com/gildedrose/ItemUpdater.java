@@ -2,7 +2,10 @@ package com.gildedrose;
 
 public abstract class ItemUpdater {
     protected abstract int updateQuality(int oldQuality, int sellIn);
-    protected abstract int updateSellIn(int oldSellIn);
+
+    protected int updateSellIn(int oldSellIn) {
+        return oldSellIn - 1;
+    }
 
     private static final int MAX_QUALITY = 50;
 

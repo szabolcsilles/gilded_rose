@@ -22,7 +22,8 @@ class GildedRose {
             return;
             
         if (item.name.equals(AGED_BRIE)) {
-            updateAgedBrie(item);
+            AgedBrieUpdater updater = new AgedBrieUpdater();
+            updater.update(item);
             return;
         }
 
@@ -53,19 +54,6 @@ class GildedRose {
         }
 
         item.quality = increaseQualityWithMaxCheck(item.quality, 1);
-    }
-
-    private void updateAgedBrie(Item item) {
-        item.sellIn = item.sellIn - 1;
-        if (item.sellIn < 0) {
-            item.quality = increaseQualityWithMaxCheck(item.quality, 2);
-            return;
-        }
-        item.quality = increaseQualityWithMaxCheck(item.quality, 1);
-    }
-
-    private int decreaseQualityWithZeroCheck(int quality, int value) {
-        return Math.max(0, quality - value);
     }
 
     private int increaseQualityWithMaxCheck(int quality, int value) {

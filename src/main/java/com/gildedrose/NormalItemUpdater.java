@@ -9,10 +9,4 @@ public class NormalItemUpdater extends ItemUpdater{
         }
         return decreaseQualityWithZeroCheck(oldQuality, 1);
     }
-
-    @Override
-    public int updateSellIn(int oldSellIn) {
-        return oldSellIn - 1;
-    }
-    
 }
