@@ -66,13 +66,15 @@ class GildedRose {
     }
 
     private void updateAgedBrie(Item item) {
-        item.quality = item.quality + 1;
         item.sellIn = item.sellIn - 1;
         if (item.sellIn < 0) {
-            item.quality = item.quality + 1;
+            item.quality = increaseQualityWithMaxCheck(item.quality, 2);
+            return;
         }
-        if (item.quality >= MAX_QUALITY) {
-            item.quality = MAX_QUALITY;
-        }
+        item.quality = increaseQualityWithMaxCheck(item.quality, 1);
+    }
+
+    private int increaseQualityWithMaxCheck(int quality, int value) {
+        return Math.min(MAX_QUALITY, quality + value);
     }
 }
