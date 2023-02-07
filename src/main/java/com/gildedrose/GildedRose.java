@@ -31,35 +31,12 @@ class GildedRose {
         }
 
         if (item.name.equals(BACKSTAGE_PASSES)) {
-            updateBackstagePasses(item);
+            BackstagePassesUpdater updater = new BackstagePassesUpdater();
+            updater.update(item);
             return;
         }
 
         NormalItemUpdater updater = new NormalItemUpdater();
         updater.update(item);
-    }
-
-    private void updateBackstagePasses(Item item) {
-        item.sellIn = item.sellIn - 1;
-        if (item.sellIn < 0) {
-            item.quality = 0;
-            return;
-        }
-
-        if (item.sellIn < 10 && item.sellIn >= 5) {
-            item.quality = increaseQualityWithMaxCheck(item.quality, 2);
-            return;
-        }
-
-        if (item.sellIn < 5) {
-            item.quality = increaseQualityWithMaxCheck(item.quality, 3);
-            return;
-        }
-
-        item.quality = increaseQualityWithMaxCheck(item.quality, 1);
-    }
-
-    private int increaseQualityWithMaxCheck(int quality, int value) {
-        return Math.min(MAX_QUALITY, quality + value);
     }
 }
