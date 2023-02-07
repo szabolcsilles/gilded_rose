@@ -71,6 +71,13 @@ class GildedRoseTest {
     }
 
     @Test
+    void sellInOfSulfurasNeverChanges() {
+        GildedRose app = createAppWithItem(new Item (GildedRose.SULFURAS, 1, 80));
+        app.updateQuality();
+        assertEquals(1, app.items[0].sellIn);
+    }
+
+    @Test
     void backstagePassesIncreasesQualityByOneMoreThanTenDaysBeforeSellIn() {
         GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 15, 0));
         app.updateQuality();
