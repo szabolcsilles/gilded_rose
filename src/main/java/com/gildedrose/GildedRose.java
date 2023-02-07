@@ -18,8 +18,11 @@ class GildedRose {
     }
 
     private void updateItem(Item item) {
-        if (item.name.equals(SULFURAS))
+        if (item.name.equals(SULFURAS)) {
+            SulfurasUpdater updater = new SulfurasUpdater();
+            updater.update(item);
             return;
+        }
             
         if (item.name.equals(AGED_BRIE)) {
             AgedBrieUpdater updater = new AgedBrieUpdater();
