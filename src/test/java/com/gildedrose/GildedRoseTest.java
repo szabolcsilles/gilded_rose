@@ -42,28 +42,28 @@ class GildedRoseTest {
 
     @Test
     void qualityOfAgedBrieIncreasesBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item("Aged Brie", 2, 1));
+        GildedRose app = createAppWithItem(new Item(GildedRose.AGED_BRIE, 2, 1));
         app.updateQuality();
         assertEquals(2, app.items[0].quality);
     }
 
     @Test
     void qualityOfAgedBrieIncreasesByTwoAfterSellIn() {
-        GildedRose app = createAppWithItem(new Item("Aged Brie", 0, 0));
+        GildedRose app = createAppWithItem(new Item(GildedRose.AGED_BRIE, 0, 0));
         app.updateQuality();
         assertEquals(2, app.items[0].quality);
     }
 
     @Test
     void qualityOfAnItemIsNeverMoreThanFifty() {
-        GildedRose app = createAppWithItem(new Item("Aged Brie", 1, 50));
+        GildedRose app = createAppWithItem(new Item(GildedRose.AGED_BRIE, 1, 50));
         app.updateQuality();
         assertEquals(50, app.items[0].quality);
     }
 
     @Test
     void qualityOfSulfurasNeverChanges() {
-        GildedRose app = createAppWithItem(new Item ("Sulfuras, Hand of Ragnaros", 1, 80));
+        GildedRose app = createAppWithItem(new Item (GildedRose.SULFURAS, 1, 80));
         app.updateQuality();
         assertEquals(80, app.items[0].quality);
         app.updateQuality();
@@ -72,14 +72,14 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesIncreasesQualityByOneMoreThanTenDaysBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 15, 0));
+        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 15, 0));
         app.updateQuality();
         assertEquals(1, app.items[0].quality);
     }
 
     @Test
     void backstagePassesIncreasesQualityByTwoBetweenTenAndFiveDaysBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 10, 0));
+        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 10, 0));
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
@@ -89,7 +89,7 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesIncreasesQualityByTwoBetweenFiveAndZeroDaysBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 5, 0));
+        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 5, 0));
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
@@ -100,7 +100,7 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesQualityDropsToZeroAfterSellIn() {
-        GildedRose app = createAppWithItem(new Item ("Backstage passes to a TAFKAL80ETC concert", 0, 50));
+        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 0, 50));
         app.updateQuality();
         assertEquals(0, app.items[0].quality);
         app.updateQuality();
