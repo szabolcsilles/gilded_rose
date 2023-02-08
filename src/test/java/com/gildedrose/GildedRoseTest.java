@@ -114,5 +114,19 @@ class GildedRoseTest {
         assertEquals(0, app.items[0].quality);
     }
 
+    @Test
+    void conjuredItemQualityDegradesByTwoBeforeSellIn() {
+        GildedRose app = createAppWithItem(new Item ("Conjured", 5, 10));
+        app.updateQuality();
+        assertEquals(8, app.items[0].quality);
+    }
+
+    @Test
+    void conjuredItemQualityDegradesByFourAfterSellIn() {
+        GildedRose app = createAppWithItem(new Item ("Conjured", 0, 10));
+        app.updateQuality();
+        assertEquals(6, app.items[0].quality);
+    }
+
 
 }
