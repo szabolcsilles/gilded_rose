@@ -42,28 +42,28 @@ class GildedRoseTest {
 
     @Test
     void qualityOfAgedBrieIncreasesBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item(GildedRose.AGED_BRIE, 2, 1));
+        GildedRose app = createAppWithItem(new Item(ItemBehaviour.AGED_BRIE.getName(), 2, 1));
         app.updateQuality();
         assertEquals(2, app.items[0].quality);
     }
 
     @Test
     void qualityOfAgedBrieIncreasesByTwoAfterSellIn() {
-        GildedRose app = createAppWithItem(new Item(GildedRose.AGED_BRIE, 0, 0));
+        GildedRose app = createAppWithItem(new Item(ItemBehaviour.AGED_BRIE.getName(), 0, 0));
         app.updateQuality();
         assertEquals(2, app.items[0].quality);
     }
 
     @Test
     void qualityOfAnItemIsNeverMoreThanFifty() {
-        GildedRose app = createAppWithItem(new Item(GildedRose.AGED_BRIE, 1, 50));
+        GildedRose app = createAppWithItem(new Item(ItemBehaviour.AGED_BRIE.getName(), 1, 50));
         app.updateQuality();
         assertEquals(50, app.items[0].quality);
     }
 
     @Test
     void qualityOfSulfurasNeverChanges() {
-        GildedRose app = createAppWithItem(new Item (GildedRose.SULFURAS, 1, 80));
+        GildedRose app = createAppWithItem(new Item (ItemBehaviour.SULFURAS.getName(), 1, 80));
         app.updateQuality();
         assertEquals(80, app.items[0].quality);
         app.updateQuality();
@@ -72,21 +72,21 @@ class GildedRoseTest {
 
     @Test
     void sellInOfSulfurasNeverChanges() {
-        GildedRose app = createAppWithItem(new Item (GildedRose.SULFURAS, 1, 80));
+        GildedRose app = createAppWithItem(new Item (ItemBehaviour.SULFURAS.getName(), 1, 80));
         app.updateQuality();
         assertEquals(1, app.items[0].sellIn);
     }
 
     @Test
     void backstagePassesIncreasesQualityByOneMoreThanTenDaysBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 15, 0));
+        GildedRose app = createAppWithItem(new Item (ItemBehaviour.BACKSTAGE_PASSES.getName(), 15, 0));
         app.updateQuality();
         assertEquals(1, app.items[0].quality);
     }
 
     @Test
     void backstagePassesIncreasesQualityByTwoBetweenTenAndFiveDaysBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 10, 0));
+        GildedRose app = createAppWithItem(new Item (ItemBehaviour.BACKSTAGE_PASSES.getName(), 10, 0));
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
@@ -96,7 +96,7 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesIncreasesQualityByTwoBetweenFiveAndZeroDaysBeforeSellIn() {
-        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 5, 0));
+        GildedRose app = createAppWithItem(new Item (ItemBehaviour.BACKSTAGE_PASSES.getName(), 5, 0));
         app.updateQuality();
         app.updateQuality();
         app.updateQuality();
@@ -107,7 +107,7 @@ class GildedRoseTest {
 
     @Test
     void backstagePassesQualityDropsToZeroAfterSellIn() {
-        GildedRose app = createAppWithItem(new Item (GildedRose.BACKSTAGE_PASSES, 0, 50));
+        GildedRose app = createAppWithItem(new Item (ItemBehaviour.BACKSTAGE_PASSES.getName(), 0, 50));
         app.updateQuality();
         assertEquals(0, app.items[0].quality);
         app.updateQuality();
