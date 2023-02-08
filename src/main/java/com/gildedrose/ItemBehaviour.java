@@ -5,7 +5,7 @@ enum ItemBehaviour {
     NORMAL_ITEM("", new NormalItemUpdater()),
     AGED_BRIE("Aged Brie", new AgedBrieUpdater()),
     BACKSTAGE_PASSES("Backstage passes to a TAFKAL80ETC concert", new BackstagePassesUpdater()),
-    CONJURED("Conjured", new ConjuredUpdater());
+    CONJURED("Conjured Mana Cake", new ConjuredUpdater());
 
     private String name;
     private ItemUpdater updater;
